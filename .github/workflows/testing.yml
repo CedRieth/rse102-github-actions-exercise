@@ -27,3 +27,8 @@ jobs:
         run: pip3 install coverage
       - name: "Run coverage with pytest"
         run: coverage run -m pytest
+      - name: "Upload coverage output file"
+        uses: actions/upload-artifact@v3
+        with:
+          name: "Output of coverage"
+          path: .coverage
