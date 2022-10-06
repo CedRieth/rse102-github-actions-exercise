@@ -32,3 +32,23 @@ jobs:
         with:
           name: "Output of coverage"
           path: .coverage
+  coverage_report:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: "Output of coverage"
+      - name: "Create coverage report"
+        run: coverage report -m
+      - name: "Convert to xml format"
+        run: coverage xml
+      - name: "Upload coverage output file"
+        uses: actions/upload-artifact@v3
+        with:
+          name: "coverage xml"
+          path: coverage.xml
+
