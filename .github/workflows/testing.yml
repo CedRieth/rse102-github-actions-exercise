@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
+      - name: "Install NumPy"
+        run: pip3 install numpy
       - name: "Install pytest"
         run: pip3 install pytest
       - name: "Install coverage"
